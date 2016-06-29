@@ -1,10 +1,12 @@
-package com.feicuiedu.gitdroid;
+package com.feicuiedu.gitdroid.splash;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.feicuiedu.gitdroid.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
