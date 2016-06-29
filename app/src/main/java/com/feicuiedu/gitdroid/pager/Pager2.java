@@ -45,26 +45,29 @@ public class Pager2 extends FrameLayout {
         ivBubble3.setVisibility(View.GONE);
     }
     public void showAnimation(){
-        postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ivBubble1.setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.FadeInLeft).duration(300).playOn(ivBubble1);
-            }
-        },50);
-        postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ivBubble2.setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.FadeInLeft).duration(300).playOn(ivBubble2);
-            }
-        },550);
-        postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ivBubble3.setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.FadeInLeft).duration(300).playOn(ivBubble3);
-            }
-        },1050);
+        if (ivBubble1.getVisibility() != View.VISIBLE){
+            postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ivBubble1.setVisibility(View.VISIBLE);
+                    YoYo.with(Techniques.FadeInLeft).duration(300).playOn(ivBubble1);
+                }
+            },50);
+            postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ivBubble2.setVisibility(View.VISIBLE);
+                    YoYo.with(Techniques.FadeInLeft).duration(300).playOn(ivBubble2);
+                }
+            },550);
+            postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ivBubble3.setVisibility(View.VISIBLE);
+                    YoYo.with(Techniques.FadeInLeft).duration(300).playOn(ivBubble3);
+                }
+            },1050);
+        }
+
     }
 }

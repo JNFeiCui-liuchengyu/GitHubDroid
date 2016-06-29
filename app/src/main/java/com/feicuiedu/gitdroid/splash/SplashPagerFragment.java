@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.feicuiedu.gitdroid.R;
 import com.feicuiedu.gitdroid.adapter.SplashPagerAdapter;
@@ -29,9 +30,15 @@ public class SplashPagerFragment extends Fragment {
     CircleIndicator indicator;
     SplashPagerAdapter adapter;
 
-    @BindColor(R.color.colorRed)
-    int red;
+    @Bind(R.id.layoutPhone)
+    FrameLayout layoutPhone;
+    @Bind(R.id.ivPhoneBlank)
+    ImageView   ivPhoneBlank;
+    @Bind(R.id.ivPhone)
+    ImageView   ivPhone;
 
+    @BindColor(R.color.colorRed)
+    int         red;
     @BindColor(R.color.colorGreen)
     int         green;
     @BindColor(R.color.colorYellow)
@@ -55,10 +62,43 @@ public class SplashPagerFragment extends Fragment {
         adapter = new SplashPagerAdapter(getContext());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(pageChangeListener);
+        viewPager.addOnPageChangeListener(phoneViewHandler);
         indicator.setViewPager(viewPager);
 
-
     }
+
+    private final ViewPager.OnPageChangeListener phoneViewHandler = new ViewPager
+            .OnPageChangeListener() {
+
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            //当viewpager在第二个页面和第三个页面之间时(总是1) 手机要和viewpager一起平移
+            if (position == 0) {
+                float scale = 0.3f + positionOffset * 0.7f;
+                layoutPhone.setScaleX(scale);
+                layoutPhone.setScaleY(scale);
+                ivPhone.setAlpha(positionOffset);
+                int scroll = (int) ((positionOffset - 1) * 300);
+                layoutPhone.setTranslationX(scroll);
+                return;
+            }
+            if (position == 1) {
+                layoutPhone.setTranslationX(-positionOffsetPixels);
+                return;
+            }
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
 
     private final ViewPager.OnPageChangeListener pageChangeListener = new ViewPager
             .OnPageChangeListener() {
@@ -81,7 +121,7 @@ public class SplashPagerFragment extends Fragment {
         @Override
         public void onPageSelected(int position) {
             if (position == 2) {
-                Pager2 pager2= (Pager2) adapter.getView(2);
+                Pager2 pager2 = (Pager2) adapter.getView(2);
                 pager2.showAnimation();
             }
         }

@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.feicuiedu.gitdroid.MainActivity;
 import com.feicuiedu.gitdroid.R;
+import com.feicuiedu.gitdroid.commons.ActivityUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,9 +22,17 @@ public class SplashActivity extends AppCompatActivity {
     @Bind(R.id.btnLogin) Button btnLogin;
     @Bind(R.id.btnEnter) Button btnEnter;
 
+    private ActivityUtils activityUtils;
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+    }
+
+    @Override
+    public void onContentChanged() {
+        super.onContentChanged();
+        activityUtils=new ActivityUtils(this);
         ButterKnife.bind(this);
     }
 
@@ -33,6 +43,6 @@ public class SplashActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnEnter)
     public void enter() {
-        Toast.makeText(this, "enter", Toast.LENGTH_SHORT).show();
+        activityUtils.startActivity(MainActivity.class);
     }
 }
