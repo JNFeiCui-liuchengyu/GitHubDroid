@@ -1,12 +1,11 @@
 package com.feicuiedu.gitdroid.splash;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.feicuiedu.gitdroid.MainActivity;
+import com.feicuiedu.gitdroid.home.MainActivity;
 import com.feicuiedu.gitdroid.R;
 import com.feicuiedu.gitdroid.commons.ActivityUtils;
 
